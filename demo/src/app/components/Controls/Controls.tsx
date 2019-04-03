@@ -22,7 +22,7 @@ interface Props {
   connected: boolean;
   connect: (url: string) => void;
   disconnect: () => void;
-  onSendMessage: (message) => void;
+  onSendMessage: (message: string) => void;
 }
 
 interface State {
@@ -34,7 +34,7 @@ class Controls extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      message: '',
+      message: exampleMessages[0].value,
       webSocketUrl: 'wss://websocket-echo-server.herokuapp.com',
     };
   }
@@ -127,14 +127,13 @@ class Controls extends React.Component<Props, State> {
         <InputGroup>
           <Label>
             Example Messages
+
             <ExampleMessageDropDown
               options={exampleMessages}
               onChange={this.handleExampleMessageChange}
             />
           </Label>
-        </InputGroup>
 
-        <InputGroup>
           <TextArea
             onChange={this.handleMessageChange}
             placeholder="Input JSON formated message here…"

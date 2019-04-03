@@ -27,6 +27,7 @@ export const Container = styled.div`
 
 export const ExampleMessageDropDown = styled(DropDown)`
   margin-top: 5px;
+  margin-bottom: 15px;
 `;
 
 export const TextArea = styled.textarea`

@@ -1,11 +1,12 @@
+/**
+ * JSON.stringify sugar.
+ */
+const stringify = (input: any) => JSON.stringify(input, null, 2);
+
 export default [
   {
-    name: 'None',
-    value: '',
-  },
-  {
     name: 'Array',
-    value: JSON.stringify([
+    value: stringify([
       {
         name: 'Jane',
         age: 26,
@@ -17,24 +18,24 @@ export default [
         age: 25,
         sex: 'M',
         created: new Date(),
-      }
-    ], null, 2)
+      },
+    ]),
   },
   {
     name: 'Date',
-    value: JSON.stringify(new Date()),
+    value: stringify(new Date()),
   },
   {
     name: 'Object',
-    value: JSON.stringify({
+    value: stringify({
       name: 'John',
       age: 25,
       sex: 'M',
       created: new Date(),
-    }, null, 2),
+    }),
   },
   {
     name: 'String',
-    value: JSON.stringify(Math.random().toString(36).substring(2)),
+    value: stringify(Math.random().toString(36).substring(2)),
   },
 ];
