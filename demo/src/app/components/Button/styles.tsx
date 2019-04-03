@@ -36,12 +36,13 @@ export default styled.button<Props>`
   border: none;
   color: ${Colors.SUN};
   display: inline-block;
+  flex: 0 0;
   outline: none;
   padding: 7px 15px 6px 15px;
   text-transform: uppercase;
   transition-property: background-color, color;
   transition: 0.1s ease-in-out;
-  flex: 0 0;
+  user-select: none;
 
   &:hover {
     background-color: ${lighten(0.02, Colors.MARS)};
