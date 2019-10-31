@@ -13,7 +13,7 @@ describe('actions', () => {
 
         expect(isFSA(act)).toBe(true);
         expect(act).toEqual({
-          type: `${actionTypes.DEFAULT_PREFIX}::${actionTypes.WEBSOCKET_CONNECT}`,
+          type: `${actionTypes.DEFAULT_PREFIX}/${actionTypes.WEBSOCKET_CONNECT}`,
           meta: { timestamp: expect.any(Date) },
           payload: {
             url: 'fake url',
@@ -26,7 +26,7 @@ describe('actions', () => {
 
         expect(isFSA(act)).toBe(true);
         expect(act).toEqual({
-          type: `${PREFIX}::${actionTypes.WEBSOCKET_CONNECT}`,
+          type: `${PREFIX}/${actionTypes.WEBSOCKET_CONNECT}`,
           meta: { timestamp: expect.any(Date) },
           payload: {
             url: 'fake url',
@@ -39,7 +39,7 @@ describe('actions', () => {
 
         expect(isFSA(act)).toBe(true);
         expect(act).toEqual({
-          type: `${actionTypes.DEFAULT_PREFIX}::${actionTypes.WEBSOCKET_CONNECT}`,
+          type: `${actionTypes.DEFAULT_PREFIX}/${actionTypes.WEBSOCKET_CONNECT}`,
           meta: { timestamp: expect.any(Date) },
           payload: {
             url: 'fake url',
@@ -53,7 +53,7 @@ describe('actions', () => {
 
         expect(isFSA(act)).toBe(true);
         expect(act).toEqual({
-          type: `${PREFIX}::${actionTypes.WEBSOCKET_CONNECT}`,
+          type: `${PREFIX}/${actionTypes.WEBSOCKET_CONNECT}`,
           meta: { timestamp: expect.any(Date) },
           payload: {
             url: 'fake url',
@@ -69,7 +69,7 @@ describe('actions', () => {
 
         expect(isFSA(act)).toBe(true);
         expect(act).toEqual({
-          type: `${actionTypes.DEFAULT_PREFIX}::${actionTypes.WEBSOCKET_DISCONNECT}`,
+          type: `${actionTypes.DEFAULT_PREFIX}/${actionTypes.WEBSOCKET_DISCONNECT}`,
           meta: { timestamp: expect.any(Date) },
         });
       });
@@ -79,7 +79,7 @@ describe('actions', () => {
 
         expect(isFSA(act)).toBe(true);
         expect(act).toEqual({
-          type: `${PREFIX}::${actionTypes.WEBSOCKET_DISCONNECT}`,
+          type: `${PREFIX}/${actionTypes.WEBSOCKET_DISCONNECT}`,
           meta: { timestamp: expect.any(Date) },
         });
       });
@@ -91,7 +91,7 @@ describe('actions', () => {
 
         expect(isFSA(act)).toBe(true);
         expect(act).toEqual({
-          type: `${actionTypes.DEFAULT_PREFIX}::${actionTypes.WEBSOCKET_SEND}`,
+          type: `${actionTypes.DEFAULT_PREFIX}/${actionTypes.WEBSOCKET_SEND}`,
           meta: { timestamp: expect.any(Date) },
           payload: {
             test: 'value',
@@ -104,7 +104,7 @@ describe('actions', () => {
 
         expect(isFSA(act)).toBe(true);
         expect(act).toEqual({
-          type: `${PREFIX}::${actionTypes.WEBSOCKET_SEND}`,
+          type: `${PREFIX}/${actionTypes.WEBSOCKET_SEND}`,
           meta: { timestamp: expect.any(Date) },
           payload: {
             test: 'value',
@@ -121,7 +121,7 @@ describe('actions', () => {
 
         expect(isFSA(act)).toBe(true);
         expect(act).toEqual({
-          type: `${PREFIX}::${actionTypes.WEBSOCKET_BEGIN_RECONNECT}`,
+          type: `${PREFIX}/${actionTypes.WEBSOCKET_BEGIN_RECONNECT}`,
           meta: { timestamp: expect.any(Date) },
         });
       });
@@ -133,7 +133,7 @@ describe('actions', () => {
 
         expect(isFSA(act)).toBe(true);
         expect(act).toEqual({
-          type: `${PREFIX}::${actionTypes.WEBSOCKET_RECONNECT_ATTEMPT}`,
+          type: `${PREFIX}/${actionTypes.WEBSOCKET_RECONNECT_ATTEMPT}`,
           meta: { timestamp: expect.any(Date) },
           payload: {
             count: 1,
@@ -148,7 +148,7 @@ describe('actions', () => {
 
         expect(isFSA(act)).toBe(true);
         expect(act).toEqual({
-          type: `${PREFIX}::${actionTypes.WEBSOCKET_RECONNECTED}`,
+          type: `${PREFIX}/${actionTypes.WEBSOCKET_RECONNECTED}`,
           meta: { timestamp: expect.any(Date) },
         });
       });
@@ -160,7 +160,7 @@ describe('actions', () => {
 
         expect(isFSA(act)).toBe(true);
         expect(act).toEqual({
-          type: `${PREFIX}::${actionTypes.WEBSOCKET_CLOSED}`,
+          type: `${PREFIX}/${actionTypes.WEBSOCKET_CLOSED}`,
           meta: { timestamp: expect.any(Date) },
           payload: {
             test: 'value',
@@ -175,7 +175,7 @@ describe('actions', () => {
 
         expect(isFSA(act)).toBe(true);
         expect(act).toEqual({
-          type: `${PREFIX}::${actionTypes.WEBSOCKET_MESSAGE}`,
+          type: `${PREFIX}/${actionTypes.WEBSOCKET_MESSAGE}`,
           meta: { timestamp: expect.any(Date) },
           payload: {
             event: {
@@ -194,7 +194,7 @@ describe('actions', () => {
 
         expect(isFSA(act)).toBe(true);
         expect(act).toEqual({
-          type: `${PREFIX}::${actionTypes.WEBSOCKET_OPEN}`,
+          type: `${PREFIX}/${actionTypes.WEBSOCKET_OPEN}`,
           meta: { timestamp: expect.any(Date) },
           payload: {
             test: 'value',
@@ -209,7 +209,7 @@ describe('actions', () => {
 
         expect(isFSA(act)).toBe(true);
         expect(act).toEqual({
-          type: `${PREFIX}::${actionTypes.WEBSOCKET_BROKEN}`,
+          type: `${PREFIX}/${actionTypes.WEBSOCKET_BROKEN}`,
           meta: { timestamp: expect.any(Date) },
         });
       });
@@ -223,7 +223,7 @@ describe('actions', () => {
         expect(isFSA(act)).toBe(true);
         expect(isError(act)).toBe(true);
         expect(act).toEqual({
-          type: `${PREFIX}::${actionTypes.WEBSOCKET_ERROR}`,
+          type: `${PREFIX}/${actionTypes.WEBSOCKET_ERROR}`,
           error: true,
           meta: {
             timestamp: expect.any(Date),
@@ -244,7 +244,7 @@ describe('actions', () => {
         expect(isFSA(act)).toBe(true);
         expect(isError(act)).toBe(true);
         expect(act).toEqual({
-          type: `${PREFIX}::${actionTypes.WEBSOCKET_ERROR}`,
+          type: `${PREFIX}/${actionTypes.WEBSOCKET_ERROR}`,
           error: true,
           meta: {
             timestamp: expect.any(Date),

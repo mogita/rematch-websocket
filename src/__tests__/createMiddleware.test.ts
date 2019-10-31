@@ -10,7 +10,7 @@ const disconnectMock = jest.fn();
 const sendMock = jest.fn();
 const dispatchMock = jest.fn(i => i);
 const mockStore = () => {
-  const store = { getState: () => {}, dispatch: dispatchMock };
+  const store = { getState: () => { }, dispatch: dispatchMock };
   const wrapper = middleware()(store);
   const dispatch = wrapper(i => i);
 
@@ -21,10 +21,10 @@ const mockStore = () => {
 ReduxWebSocketMock.mockImplementation((options) => {
   /* eslint-disable lines-between-class-members */
   class Fake {
-    close = () => {}
+    close = () => { }
     connect = connectMock
     disconnect = disconnectMock
-    handleBrokenConnection = () => {}
+    handleBrokenConnection = () => { }
     hasOpened = false
     lastSocketUrl = ''
     private options = options
@@ -33,10 +33,10 @@ ReduxWebSocketMock.mockImplementation((options) => {
     reconnectOnClose = false
     send = sendMock
     websocket = null
-    handleClose = () => {}
-    handleError = () => {}
-    handleOpen = () => {}
-    handleMessage = () => {}
+    handleClose = () => { }
+    handleError = () => { }
+    handleOpen = () => { }
+    handleMessage = () => { }
   }
   /* eslint-enable lines-between-class-members */
 
@@ -94,10 +94,10 @@ describe('middleware', () => {
     });
   });
 
-  it('should handle a REDUX_WEBSOCKET::CONNECT action', () => {
+  it('should handle a REDUX_WEBSOCKET/CONNECT action', () => {
     const { store, dispatch } = mockStore();
     const dispatchedAction = {
-      type: 'REDUX_WEBSOCKET::CONNECT',
+      type: 'REDUX_WEBSOCKET/CONNECT',
       meta: { timestamp: expect.any(Date) },
       payload: {
         url: 'ws://example.com',
@@ -112,10 +112,10 @@ describe('middleware', () => {
   });
 
 
-  it('should handle a REDUX_WEBSOCKET::DISCONNECT action', () => {
+  it('should handle a REDUX_WEBSOCKET/DISCONNECT action', () => {
     const { store, dispatch } = mockStore();
     const dispatchedAction = {
-      type: 'REDUX_WEBSOCKET::DISCONNECT',
+      type: 'REDUX_WEBSOCKET/DISCONNECT',
       meta: { timestamp: expect.any(Date) },
     };
 
@@ -126,10 +126,10 @@ describe('middleware', () => {
     expect(disconnectMock).toHaveBeenCalledWith(store, dispatchedAction);
   });
 
-  it('should handle a REDUX_WEBSOCKET::SEND action', () => {
+  it('should handle a REDUX_WEBSOCKET/SEND action', () => {
     const { store, dispatch } = mockStore();
     const dispatchedAction = {
-      type: 'REDUX_WEBSOCKET::SEND',
+      type: 'REDUX_WEBSOCKET/SEND',
       meta: { timestamp: expect.any(Date) },
       payload: {
         test: 'message',
@@ -146,7 +146,7 @@ describe('middleware', () => {
   it('should not break on random actions', () => {
     const { dispatch } = mockStore();
 
-    dispatch({ type: `REDUX_WEBSOCKET::${Math.random().toString(36).substring(2, 15)}` });
+    dispatch({ type: `REDUX_WEBSOCKET/${Math.random().toString(36).substring(2, 15)}` });
     dispatch({ type: 'something-else-entirely' });
 
     expect(connectMock).not.toHaveBeenCalled();
@@ -162,7 +162,7 @@ describe('middleware', () => {
     const { dispatch } = mockStore();
     const result = dispatch(actions.send({ test: 'message' }));
     const expectedResult = {
-      type: 'REDUX_WEBSOCKET::SEND',
+      type: 'REDUX_WEBSOCKET/SEND',
       meta: {
         timestamp: expect.any(Date),
       },
@@ -175,7 +175,7 @@ describe('middleware', () => {
     expect(dispatchMock).toHaveBeenCalledTimes(1);
     expect(dispatchMock).toHaveBeenCalledWith({
       error: true,
-      type: 'REDUX_WEBSOCKET::ERROR',
+      type: 'REDUX_WEBSOCKET/ERROR',
       meta: {
         timestamp: expect.any(Date),
         originalAction: expectedResult,

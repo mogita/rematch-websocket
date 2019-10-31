@@ -25,7 +25,7 @@ const defaultOptions = {
 export default (rawOptions?: Options): Middleware => {
   const options = { ...defaultOptions, ...rawOptions };
   const { prefix } = options;
-  const actionPrefixExp = RegExp(`^${prefix}::`);
+  const actionPrefixExp = RegExp(`^${prefix}/`);
 
   // Create a new redux websocket instance.
   const reduxWebsocket = new ReduxWebSocket(options);
