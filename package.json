@@ -1,6 +1,6 @@
 {
-  "name": "@giantmachines/redux-websocket",
-  "version": "1.1.5",
+  "name": "rematch-websocket",
+  "version": "1.0.0",
   "description": "A redux middleware to handle websocket connections",
   "main": "dist",
   "files": [
@@ -19,12 +19,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/giantmachines/redux-websocket.git"
+    "url": "git+https://github.com/mogita/rematch-websocket.git"
   },
   "keywords": [
-    "redux"
+    "redux",
+    "rematch",
+    "websocket"
   ],
-  "author": "Giant Machines <contact@giantmachines.com> (https://giantmachines.com)",
+  "author": "mogita <me@mogita.com>",
   "license": "MIT",
   "dependencies": {
     "redux": "~4"
