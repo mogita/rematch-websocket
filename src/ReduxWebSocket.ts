@@ -252,7 +252,7 @@ export default class ReduxWebSocket {
   // and we're not currently trying to reconnect.
   //
   // This prevents ongoing reconnect loops to connections that have not
-  // successfully opened before, such as net::ERR_CONNECTION_REFUSED errors.
+  // successfully opened before, such as net/ERR_CONNECTION_REFUSED errors.
   //
   // This also prevents starting multiple reconnection attempt loops.
   private canAttemptReconnect(): boolean {

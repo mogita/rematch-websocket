@@ -1,6 +1,8 @@
-# redux-websocket [![codecov](https://codecov.io/gh/giantmachines/redux-websocket/branch/master/graph/badge.svg)](https://codecov.io/gh/giantmachines/redux-websocket) [![npm version](https://badge.fury.io/js/%40giantmachines%2Fredux-websocket.svg)](https://badge.fury.io/js/%40giantmachines%2Fredux-websocket) ![npm](https://img.shields.io/npm/dm/@giantmachines/redux-websocket)
+# rematch-websocket [![codecov](https://codecov.io/gh/mogita/rematch-websocket/branch/master/graph/badge.svg)](https://codecov.io/gh/mogita/rematch-websocket) [![npm version](https://badge.fury.io/js/%40giantmachines%2Fredux-websocket.svg)](https://badge.fury.io/js/rematch-websocket) ![npm](https://img.shields.io/npm/dm/rematch-websocket)
 
-`redux-websocket` is a Redux middleware for managing data over a WebSocket connection.
+> Forked from redux-websocket to accomodate Rematch. Original README as seen below (keywords modified to suit actual usage of this package):
+
+`rematch-websocket` is a Redux middleware for managing data over a WebSocket connection.
 
 This middleware uses actions to interact with a WebSocket connection including connecting, disconnecting, sending messages, and receiving messages. All actions follow the [Flux Standard Action](https://github.com/acdlite/flux-standard-action) model.
 
@@ -15,7 +17,7 @@ This middleware uses actions to interact with a WebSocket connection including c
 ## Installation
 
 ```sh
-$ npm i @giantmachines/redux-websocket
+$ npm i rematch-websocket
 ```
 
 ## Configuration
@@ -24,7 +26,7 @@ Configure your Redux store to use the middleware with `applyMiddleware`. This pa
 
 ```js
 import { applyMiddleware, compose, createStore } from 'redux';
-import reduxWebsocket from '@giantmachines/redux-websocket';
+import reduxWebsocket from 'rematch-websocket';
 
 import reducer from './store/reducer';
 
@@ -62,7 +64,7 @@ interface Options {
 
 ## Usage
 
-`redux-websocket` will dispatch some actions automatically, based on what the internal WebSocket connection. Some actions will need to be dispatched by you.
+`rematch-websocket` will dispatch some actions automatically, based on what the internal WebSocket connection. Some actions will need to be dispatched by you.
 
 ### User dispatched actions
 
@@ -72,12 +74,12 @@ These actions must be dispatched by you, however we do export action creator fun
 
 ---
 
-##### ➡️ `REDUX_WEBSOCKET::WEBSOCKET_CONNECT`
+##### ➡️ `REDUX_WEBSOCKET/WEBSOCKET_CONNECT`
 
 ###### Example:
 
 ```js
-import { connect } from '@giantmachines/redux-websocket';
+import { connect } from 'rematch-websocket';
 
 store.dispatch(connect('wss://my-server.com'));
 
@@ -102,12 +104,12 @@ store.dispatch(connect('wss://my-server.com', 'MY_PREFIX'));
 
 ---
 
-##### ➡️ `REDUX_WEBSOCKET::WEBSOCKET_DISCONNECT`
+##### ➡️ `REDUX_WEBSOCKET/WEBSOCKET_DISCONNECT`
 
 ###### Example:
 
 ```js
-import { disconnect } from '@giantmachines/redux-websocket';
+import { disconnect } from 'rematch-websocket';
 
 store.dispatch(disconnect());
 ```
@@ -118,12 +120,12 @@ store.dispatch(disconnect());
 
 ---
 
-##### ➡️ `REDUX_WEBSOCKET::WEBSOCKET_SEND`
+##### ➡️ `REDUX_WEBSOCKET/WEBSOCKET_SEND`
 
 ###### Example:
 
 ```js
-import { send } from '@giantmachines/redux-websocket';
+import { send } from 'rematch-websocket';
 
 store.dispatch(send({ my: 'message' }));
 ```
@@ -139,7 +141,7 @@ store.dispatch(send({ my: 'message' }));
 
 These actions are dispatched automatically by the middlware.
 
-##### ⬅️ `REDUX_WEBSOCKET::OPEN`
+##### ⬅️ `REDUX_WEBSOCKET/OPEN`
 
 Dispatched when the WebSocket connection successfully opens, including after automatic reconnect.
 
@@ -147,7 +149,7 @@ Dispatched when the WebSocket connection successfully opens, including after aut
 
 ```js
 {
-    type: 'REDUX_WEBSOCKET::OPEN',
+    type: 'REDUX_WEBSOCKET/OPEN',
     meta: {
         timestamp: string,
     },
@@ -156,7 +158,7 @@ Dispatched when the WebSocket connection successfully opens, including after aut
 
 ---
 
-##### ⬅️ `REDUX_WEBSOCKET::CLOSED`
+##### ⬅️ `REDUX_WEBSOCKET/CLOSED`
 
 Dispatched when the WebSocket connection successfully closes, both when you ask the middleware to close the connection, and when the connection drops.
 
@@ -164,7 +166,7 @@ Dispatched when the WebSocket connection successfully closes, both when you ask 
 
 ```js
 {
-    type: 'REDUX_WEBSOCKET::CLOSED',
+    type: 'REDUX_WEBSOCKET/CLOSED',
     meta: {
         timestamp: string,
     },
@@ -173,7 +175,7 @@ Dispatched when the WebSocket connection successfully closes, both when you ask 
 
 ---
 
-##### ⬅️ `REDUX_WEBSOCKET::MESSAGE`
+##### ⬅️ `REDUX_WEBSOCKET/MESSAGE`
 
 Dispatched when the WebSocket connection receives a message. The payload includes a `message` key, which is JSON, and an `origin` key, which is the address of the connection from which the message was recieved.
 
@@ -181,7 +183,7 @@ Dispatched when the WebSocket connection receives a message. The payload include
 
 ```js
 {
-    type: 'REDUX_WEBSOCKET::MESSAGE',
+    type: 'REDUX_WEBSOCKET/MESSAGE',
     meta: {
         timestamp: string,
     },
@@ -194,7 +196,7 @@ Dispatched when the WebSocket connection receives a message. The payload include
 
 ---
 
-##### ⬅️ `REDUX_WEBSOCKET::BROKEN`
+##### ⬅️ `REDUX_WEBSOCKET/BROKEN`
 
 Dispatched when the WebSocket connection is dropped. This action will always be dispatched _after_ the `CLOSED` action.
 
@@ -202,7 +204,7 @@ Dispatched when the WebSocket connection is dropped. This action will always be 
 
 ```js
 {
-    type: 'REDUX_WEBSOCKET::BROKEN',
+    type: 'REDUX_WEBSOCKET/BROKEN',
     meta: {
         timestamp: string,
     },
@@ -211,7 +213,7 @@ Dispatched when the WebSocket connection is dropped. This action will always be 
 
 ---
 
-##### ⬅️ `REDUX_WEBSOCKET::BEGIN_RECONNECT`
+##### ⬅️ `REDUX_WEBSOCKET/BEGIN_RECONNECT`
 
 Dispatched when the middleware is starting the reconnection process.
 
@@ -219,7 +221,7 @@ Dispatched when the middleware is starting the reconnection process.
 
 ```js
 {
-    type: 'REDUX_WEBSOCKET::BEGIN_RECONNECT',
+    type: 'REDUX_WEBSOCKET/BEGIN_RECONNECT',
     meta: {
         timestamp: string,
     },
@@ -228,7 +230,7 @@ Dispatched when the middleware is starting the reconnection process.
 
 ---
 
-##### ⬅️ `REDUX_WEBSOCKET::RECONNECT_ATTEMPT`
+##### ⬅️ `REDUX_WEBSOCKET/RECONNECT_ATTEMPT`
 
 Dispatched every time the middleware attempts a reconnection. Includes a `count` as part of the payload.
 
@@ -236,7 +238,7 @@ Dispatched every time the middleware attempts a reconnection. Includes a `count`
 
 ```js
 {
-    type: 'REDUX_WEBSOCKET::RECONNECT_ATTEMPT',
+    type: 'REDUX_WEBSOCKET/RECONNECT_ATTEMPT',
     meta: {
         timestamp: string,
     },
@@ -248,7 +250,7 @@ Dispatched every time the middleware attempts a reconnection. Includes a `count`
 
 ---
 
-##### ⬅️ `REDUX_WEBSOCKET::RECONNECTED`
+##### ⬅️ `REDUX_WEBSOCKET/RECONNECTED`
 
 Dispatched when the middleware reconnects. This action is dispached right before an `OPEN` action.
 
@@ -256,7 +258,7 @@ Dispatched when the middleware reconnects. This action is dispached right before
 
 ```js
 {
-    type: 'REDUX_WEBSOCKET::RECONNECTED',
+    type: 'REDUX_WEBSOCKET/RECONNECTED',
     meta: {
         timestamp: string,
     },
@@ -265,7 +267,7 @@ Dispatched when the middleware reconnects. This action is dispached right before
 
 ---
 
-##### ⬅️ `REDUX_WEBSOCKET::ERROR`
+##### ⬅️ `REDUX_WEBSOCKET/ERROR`
 
 General purpose error action.
 
@@ -273,7 +275,7 @@ General purpose error action.
 
 ```js
 {
-    type: 'REDUX_WEBSOCKET::ERROR',
+    type: 'REDUX_WEBSOCKET/ERROR',
     error: true,
     meta: {
         timestamp: string,

@@ -13,7 +13,7 @@ export const getConnected = (state: State) => state.connected;
 
 const reducer = (state = defaultState, action): State => {
   switch (action.type) {
-    case 'INTERNAL::CLEAR_MESSAGE_LOG':
+    case 'INTERNAL/CLEAR_MESSAGE_LOG':
       return {
         ...state,
         messages: [],
